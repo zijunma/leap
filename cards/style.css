@@ -23,7 +23,7 @@ body {
         position: relative;
         width: 220px;
         height: 150px;
-        background-color: rgb(10, 147, 211);
+        background-color: rgb(122, 186, 216);
         border: 1px solid black;
         padding: 20px;
 
@@ -58,10 +58,10 @@ body {
     .hotbadge {
         position: absolute;
         top: -8px;
-        left: 8px;
+        left: -5px;
         background-color: yellow;
         color: black;
-        padding: 4x 8px;
+        padding: 4px 8px;
         font-size: 12px;
         font-weight: bold;
         border: 1px solid black;
