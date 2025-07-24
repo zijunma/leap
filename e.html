@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        #infoCardContainer {
+            justify-content: space-evenly;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .infoCard {
+            display: flex;
+            border: 5px #000000 solid;
+            position: relative;
+            width: 420px;
+            padding: 10px;
+            margin: 15px;
+            background: #FFADAD;
+        }
+        .text {
+            margin: 15px;
+            text-align: left;
+            justify-content: space-around; 
+        }
+        p, h1 {
+            display: block;
+            padding: 10px;
+            background: #ffcdcd;
+            border: 5px #ff9898 solid;
+        }
+        .label {
+            display: flex;
+            margin: 0px;
+            padding: 5px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #ff99a3;
+            border: 3px #000000 solid;
+        }
+        img {
+            justify-content: flex-start;
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+    <body>
+        <div id="infoCardContainer">
+            <div class="infoCard">
+                <p class="label">Fruit 1</p>
+                <img src="https://static.vecteezy.com/system/resources/previews/048/560/411/non_2x/studio-shot-of-fresh-natural-orange-isolated-on-a-transparent-background-png.png" alt="Orange">
+                <div class="text">
+                    <h1>Orange</h1>
+                    <p>refer to image</p>
+                </div>
+            </div>
+            <div class="infoCard">
+                <p class="label">Fruit 2</p>
+                <img src="https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-fresh-apple-fruit-red-png-image_10203073.png" alt="Apple image">
+                <div class="text">
+                    <h1>Apple</h1>
+                    <p>refer to image</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
