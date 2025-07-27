@@ -1,0 +1,36 @@
+<!-- button-tester.html -->
+<div id="display" style="padding:20px; border:1px solid #ccc; ">
+  Click a button to see me change!
+</div>
+<button id="textBtn">Change Text</button>
+<button id="colorBtn">Change Color</button>
+<button id="hideBtn">Hide Me</button>
+
+<script>
+    const display  = document.querySelector('#display');
+    const textBtn  = document.querySelector('#textBtn');
+    const colorBtn = document.querySelector('#colorBtn');
+    const hideBtn  = document.querySelector('#hideBtn');
+
+    textBtn.addEventListener("click", () => {
+        display.textContent = "this text was changed!";
+    });
+
+    colorBtn.addEventListener("click", () => {
+        display.style.backgroundColor = "#a8e6cf";
+    });
+
+    // hideBtn.addEventListener("click", () => {
+    //     if (display.style.display === 'none') {
+    //         display.style.display = 'block';
+    //     } else {
+    //         display.style.display = 'none';
+    //     }
+    // });
+
+    hideBtn.addEventListener("click", () => {
+        display.style.display = display.style.display === 'none' ? 'block' : 'none';
+    })
+</script>
+
+

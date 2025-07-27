@@ -1,0 +1,39 @@
+<!-- <h2>My Favorite Movies</h2>
+
+<ul id="movieList"></ul>
+
+<script>
+    const movies = ["Spider-Man", "Moana", "Black Panther"];
+
+    const list = document.getElementById("movieList");
+
+    movies.forEach(movie => {
+        const li = document.createElement("li");
+        li.textContent = movie;
+        list.appendChild(li);
+    });
+
+
+
+</script> -->
+
+<h2>My Favorite Movies</h2>
+
+<ul id="movieList"></ul>
+
+<script>
+    const movies = [
+        { name: "Moana", year: "(2016)"},
+        { name: "Dune", year: "(2021)"}
+    ];
+
+    movies.forEach(movie => {
+        const li = document.createElement("li");
+        li.textContent = `${movie.name} - ${movie.year} `;
+
+    document.getElementById("movieList").appendChild(li);
+    });
+
+
+
+</script>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiler</title>
+    <style>
+    body {
+        margin: 20px;
+        background-color: #f5f5f5;
+        font-family: Arial, Helvetica, sans-serif;
+
+}
+
+body.dark {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.theme-toggle { 
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(124, 208, 211);
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+
+.theme-toggle:hover{ 
+    background-color: rgb(101, 171, 173);
+}
+
+body.dark .theme-toggle {
+    background-color: rgb(65, 128, 121);
+    color: white;
+    border-color: #252525
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+
+.nav-btn {
+    background-color: rgb(124, 208, 211);
+    color: black;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-btn:hover {
+    background: rgb(101, 171, 173);
+}
+
+body.dark .nav-btn {
+    background-color: rgb(64, 128, 131);
+    color: white;
+    border-color: #252525
+}
+
+body.dark .nav-btn:hover {
+    background-color: rgb(81,151, 153);
+}
+
+.profilecontain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+}
+
+.avatar {
+
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+body.dark .avatar {
+    border-color: #252525;
+}
+
+.name {
+
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.titledescrip {
+
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 6px;
+
+}
+body.dark .titledescrip {
+    color: #aaa
+}
+
+.card {
+    width: 400px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.about-card {
+    width: 400px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+
+body.dark .about-card,
+body.dark .card {
+    background: #2d2d2d;
+    border-color: #252525
+}
+
+.about-title,
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links {
+    background-color: rgb(124, 208, 211);
+    color: black;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+}
+
+
+body.dark .social-links {
+    background-color: rgb(64, 128, 131);
+    color: white;
+    border-color: #252525;
+}
+
+body.dark .social-links:hover {
+    background-color: rgb(81,151,153);
+
+}
+
+.social-links:hover {
+    background-color: rgb(101, 171, 173);
+}
+
+.education-item, .project-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+body.dark .education-item,
+body.dark .project-item {
+    background-color: #1a1a1a;
+    border-color: #252525;
+}
+
+.education-item h3, .project-item h3 {
+    margin: 0 0 10px 0;
+}
+
+.education-item p, .project-item p {
+    margin: 5px 0;
+    color: #666
+}
+
+body.dark .education-item p,
+body.dark .project-item p {
+    color: #aaa;
+}
+
+.section { 
+    scroll-margin-top: 80px;
+}
+
+@media (max-width: 500px) {
+    .about-card, .card {
+        width: 300px;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+    </style>
+</head>
+
+
+<body>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+    <nav class="nav">
+        <button class="nav-btn" onclick="scrollToSection('about')">About Me</button>
+        <button class="nav-btn" onclick="scrollToSection('education')">Education</button>
+        <button class="nav-btn" onclick="scrollToSection('projects')">Projects</button>
+        <button class="nav-btn" onclick="scrollToSection('social')">Social Links</button>
+
+
+    </nav>
+
+    <div class="profilecontain">
+        <div>
+            <div class="name">Zijun Ma</div>
+            <div class="titledescrip">Student</div>
+    </div>
+
+
+    <div id="about" class="about-card section">
+        <img src="https://shorturl.at/1g5LZ" class="avatar">
+        <div class="about-title">About Me</div>  
+        
+        <div>
+            Hello! :), I'm a student at SI Tech (rising Junior). 
+            <br>
+            I'm interested in Environmental Science and Engineering. I have worked with teachers at 
+            SI Tech and a professor at CSI to write research papers. 
+        </div>
+        <br>
+        <div>
+            I enjoy playing videogames with my friends and reading when I'm not coding.
+        </div>
+    </div>
+
+
+    <div id="education" class="card section">
+        <div class="card-title">Education</div>
+        <div id="education-content"></div>
+    </div>
+
+
+    <div id="projects" class="card section">
+        <div class="card-title">Projects</div>
+        <div id="projects-content"></div>
+    </div>
+
+    
+    <div id="social" class="card section">
+        <div class="card-title">Social</div>
+        <div class="links-list">
+            <a href="https://github.com/zijunma" class="social-links" target="_blank">GitHub</a>
+            <a href="mailto:zijunma2009@gmail.com" class="social-links" target="_blank">Gmail</a>
+            <a href="https://www.instagram.com/clqies_" class="social-links" target="_blank">Instagram</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const education = [
+        { 
+            school: "Staten Island Technical Highschool", 
+            year: "2023-2027"
+        }
+    ];
+   
+
+    const projects = [
+        { 
+            name: "Porfolio Website", 
+            description: "Made a personal portfolio website built using HTML, CSS, and Javascript.",
+            tech: ["HTML", "CSS", "Javascript"]
+        }
+    ];
+
+    function renderEducation() {
+        const educationContent = document.getElementById('education-content');
+        let html = '';
+
+        for (let i = 0; i < education.length; i++) {
+            html += '<div class="education-item">';
+            html += '<h3>' + education[i].school + '</h3>';
+            html += '<p>Years: ' + education[i].year + '</p>';
+            html += '</div>';
+        }
+
+        educationContent.innerHTML = html;
+
+    }
+
+    function renderProjects() {
+        const projectsContent = document.getElementById('projects-content');
+        let html = '';
+
+        for (let i = 0; i < projects.length; i++) {
+            html += '<div class="project-item">';
+            html += '<h3>' + projects[i].name + '</h3>';
+            html += '<p>' + projects[i].description + '</p>';
+            html += '</div>'
+            
+
+        }
+        projectsContent.innerHTML = html; 
+    }
+
+        
+
+    function showMessage() {
+        for (let i = 1; i <= 3; i++) {
+            console.log("hello visitor #: " + i);
+        }
+    }
+
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+    }
+
+    function initializeWebsite() {
+        console.log("yo, look at my website :D");
+        console.log("check out my socials g");
+        showMessage();
+        renderEducation();
+        renderProjects();
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeWebsite)
+</script>
+</body>
+</html>
