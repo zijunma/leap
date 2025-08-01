@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+<body>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="email"" id="email" placeholder="="Your Email">
+        <textarea id="message" placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <p id="feedback"></p>
+
+
+
+</body>
+</html>
+
+
+<script>
+    const form = document.getElementById("contactForm");
+    const feedback = document.getElementById("feedback");
+
+    form.addEventListener("submit", function(e)
+ {
+        e.preventDefault();
+
+
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+
+
+        if (!name || !email || !message){
+            feedback.textContent = "Please fill out all fields!";
+            feedback.style.color = "red";
+        } else {
+            feedback.textContent = "Thank you for your message!";
+            feedback.style.color = "green";
+        }
+    });
+</script>

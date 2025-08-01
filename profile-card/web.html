@@ -111,6 +111,7 @@ body.dark .avatar {
     font-size: 18px;
     color: #666;
     margin-bottom: 6px;
+    text-align: center;
 
 }
 body.dark .titledescrip {
@@ -211,6 +212,73 @@ body.dark .project-item p {
     color: #aaa;
 }
 
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    padding: 12px;
+    border: 1px solid black;
+    border-radius:  8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+}
+
+
+body.dark .contact-form input,
+body.dark .contact-form textarea {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border-color: #252525;
+}
+
+.contact-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+.contact-form button {
+    background-color: rgb(124, 208, 211);
+    color: black;
+    padding: 12px 20px;
+    border: 1px solid black;
+    border-radius:  8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.contact-form button:hover {
+    background-color: rgb(101, 171, 173);
+
+}
+
+
+body.dark .contact-form button {
+    background-color: rgb(64, 128, 131);
+    color: white;
+    border-color: #252525;
+}
+
+
+
+body.dark .contact-form button:hover {
+    background-color: rgb(81,151, 153);
+}
+
+
+.feedback {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
 .section { 
     scroll-margin-top: 80px;
 }
@@ -238,6 +306,7 @@ body.dark .project-item p {
         <button class="nav-btn" onclick="scrollToSection('education')">Education</button>
         <button class="nav-btn" onclick="scrollToSection('projects')">Projects</button>
         <button class="nav-btn" onclick="scrollToSection('social')">Social Links</button>
+        <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
 
 
     </nav>
@@ -286,8 +355,18 @@ body.dark .project-item p {
             <a href="https://www.instagram.com/clqies_" class="social-links" target="_blank">Instagram</a>
         </div>
     </div>
-</div>
 
+
+    <div id="contact" class="card section">
+        <div class="card-title">Contact Me</div>
+        <form id="contactForm" class="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="Submit">Send Message</button>
+        </form>
+    <div id="feedback" class="feedback"></div>
+</div>
 <script>
     const education = [
         { 
@@ -336,7 +415,31 @@ body.dark .project-item p {
     }
 
         
+    function initializeContactForm() {
+        const form = document.getElementById("contactForm");
+        const feedback = document.getElementById("feedback");
 
+
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+            
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+
+
+        if (!name || !email || !message){
+            feedback.textContent = "Please fill out all fields!";
+            feedback.style.color = "red";
+        } else {
+            feedback.textContent = "Thank you for your message!";
+            feedback.style.color = "green";
+            form.reset();
+            
+        }
+    });
+        
+    }
     function showMessage() {
         for (let i = 1; i <= 3; i++) {
             console.log("hello visitor #: " + i);
@@ -359,6 +462,7 @@ body.dark .project-item p {
         showMessage();
         renderEducation();
         renderProjects();
+        initializeContactForm();
     }
 
     document.addEventListener('DOMContentLoaded', initializeWebsite)
