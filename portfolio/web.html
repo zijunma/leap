@@ -5,41 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <style>
-    body {
-        margin: 20px;
-        background-color: #f5f5f5;
-        font-family: Arial, Helvetica, sans-serif;
+    * {
 
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fafafa;
+    transition: all 0.3 ease;
 }
 
 body.dark {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    background-color: #0a0a0a;
+    color: #e5e5e5;
 }
 
 .theme-toggle { 
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: rgb(124, 208, 211);
-    color: black;
-    border: 1px solid black;
+    top: 24px;
+    right: 24px;
+    background-color: rgba(124, 208, 211, 0.1);
+    color: inherit;
+    border: 1px solid rgba(124,208,211,0.3);
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 10px 14px;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3 ease;
     z-index: 1000;
 }
 
 
 .theme-toggle:hover{ 
-    background-color: rgb(101, 171, 173);
+    background-color: rgba(124, 208,211,0.2);
+    transform: translateY(-1px);
 }
 
 body.dark .theme-toggle {
-    background-color: rgb(65, 128, 121);
-    color: white;
-    border-color: #252525
+    background-color: rgba(124, 208,211,0.15);
+    border-color: rgba(124, 208,211,0.4);
+}
+.home-button {
+    position: fixed;
+    top: 78px;
+    right: 24px;
+    background-color: rgba(124, 208,211,0.1);
+    border: 1px solid rgba(124, 208,211,0.3);
+    color: inherit;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3 ease;
+    z-index: 1000;
+}
+
+.home-button:hover {
+    background: rgba(124, 208,211,0.2);
+    transform: translateY(-1px);
+}
+body.dark .home-button {
+    background: rgba(124, 208,211,0.15);
+    border-color: rgba(124, 208,211,0.4);
+}
+.land-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 80px;
+    text-align: left;
+    border-bottom:  1px solid transparent;
+    background: linear-gradient(to right, #1a1a1a, rgba(124,208,211,0.6), #1a1a1a) bottom/100% 1px no-repeat;
+    position: relative;
+}
+
+body.dark .land-section {
+    background: linear-gradient(to right, #1a1a1a, rgba(124,208,211,0.6), #1a1a1a) bottom/100% 1px no-repeat;
+}
+
+.landing-left {
+    display: flex;
+    flex-direction:  column;
+    align-items: flex-start;
+    max-width: 500px;
+    z-index: 2;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0.3;
+    }
+    33% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 0.8;
+    }
+    66% {
+        transform: translateY(10px) translateX(-5px);
+        opacity: 0.5;
+    }
+
+}
+.avatar {
+
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 3px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, rgba(124, 208,211,0.5), rgba(124, 208,211,0.8)) border-box;
+    transition: all 0.3 ease;
+    object-fit: cover;
+}
+
+body.dark .avatar {
+    background: linear-gradient(#0a0a0a, #0a0a0a) padding-box
+                linear-gradient(135deg, rgba(124, 208,211,0.5), rgba(124,208,211,0.8)) border-box;
+
+}
+.avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 32px rgba(124,208,211,0.3);
+
+
+}.name {
+
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .nav {
@@ -84,27 +197,8 @@ body.dark .nav-btn:hover {
 
 }
 
-.avatar {
 
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    border: 2px solid black;
-    margin-bottom: 15px;
-    object-fit: cover;
-}
 
-body.dark .avatar {
-    border-color: #252525;
-}
-
-.name {
-
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: center;
-}
 
 .titledescrip {
 
@@ -299,7 +393,8 @@ body.dark .contact-form button:hover {
 
 <body>
 
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    <button class="theme-toggle" onclick="toggleTheme()">◐</button>
+    <button class="home-toggle" onclick="scrollToTop()">🏠︎</button>
 
     <nav class="nav">
         <button class="nav-btn" onclick="scrollToSection('about')">About Me</button>
@@ -368,87 +463,20 @@ body.dark .contact-form button:hover {
     <div id="feedback" class="feedback"></div>
 </div>
 <script>
-    const education = [
-        { 
-            school: "Staten Island Technical Highschool", 
-            year: "2023-2027"
-        }
-    ];
-   
-
-    const projects = [
-        { 
-            name: "Porfolio Website", 
-            description: "Made a personal portfolio website built using HTML, CSS, and Javascript.",
-            tech: ["HTML", "CSS", "Javascript"]
-        }
-    ];
-
-    function renderEducation() {
-        const educationContent = document.getElementById('education-content');
-        let html = '';
-
-        for (let i = 0; i < education.length; i++) {
-            html += '<div class="education-item">';
-            html += '<h3>' + education[i].school + '</h3>';
-            html += '<p>Years: ' + education[i].year + '</p>';
-            html += '</div>';
-        }
-
-        educationContent.innerHTML = html;
-
-    }
-
-    function renderProjects() {
-        const projectsContent = document.getElementById('projects-content');
-        let html = '';
-
-        for (let i = 0; i < projects.length; i++) {
-            html += '<div class="project-item">';
-            html += '<h3>' + projects[i].name + '</h3>';
-            html += '<p>' + projects[i].description + '</p>';
-            html += '</div>'
-            
-
-        }
-        projectsContent.innerHTML = html; 
-    }
-
-        
-    function initializeContactForm() {
-        const form = document.getElementById("contactForm");
-        const feedback = document.getElementById("feedback");
-
-
-        form.addEventListener("submit", function(e){
-            e.preventDefault();
-            
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const message = form.message.value.trim();
-
-
-        if (!name || !email || !message){
-            feedback.textContent = "Please fill out all fields!";
-            feedback.style.color = "red";
-        } else {
-            feedback.textContent = "Thank you for your message!";
-            feedback.style.color = "green";
-            form.reset();
-            
-        }
-    });
-        
-    }
-    function showMessage() {
-        for (let i = 1; i <= 3; i++) {
-            console.log("hello visitor #: " + i);
+    function scrollToSection(sectionID) {
+        const element = document.getElementById(sectionID);
+        if (element) {
+            elemt.scrollIntoView({
+                behavior: "smooth",
+                block:"start"
+            });
         }
     }
 
-    function scrollToSection(sectionId) {
-        document.getElementById(sectionId).scrollIntoView({
-            behavior: 'smooth'
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
     }
 
@@ -456,14 +484,7 @@ body.dark .contact-form button:hover {
         document.body.classList.toggle('dark');
     }
 
-    function initializeWebsite() {
-        console.log("yo, look at my website :D");
-        console.log("check out my socials g");
-        showMessage();
-        renderEducation();
-        renderProjects();
-        initializeContactForm();
-    }
+
 
     document.addEventListener('DOMContentLoaded', initializeWebsite)
 </script>

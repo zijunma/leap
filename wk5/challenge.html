@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1em;
+    }
+    .card {
+    flex: 1 1 250px; /* Grow, shrink, min width 250px */
+    max-width: 100%;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    }
+</style>
+
+<body>
+<h2>Comments</h2>
+<div id="commentGrid" class="flex-container"></div>
+
+
+<script>
+    fetch('https://jsonplaceholder.typicode.com/comments?_limit=20')
+        .then(res => res.json())
+        .then(comments => {
+            const grid = document.getElementById("commentGrid");
+            comments.forEach(e => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                <h3>${e.name}</h3>
+                <p class="email">${e.email}</p>
+                <p>${e.body}</p>
+                `;
+                grid.appendChild(card);
+            });
+        })
+     
+
+</script>
+</body>
+</html>
