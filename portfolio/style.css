@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profiler</title>
-    <style>
-    * {
+* {
 
         margin: 0;
         padding: 0;
@@ -17,7 +10,7 @@ body {
     line-height: 1.6;
     color: #1a1a1a;
     background: #fafafa;
-    transition: all 0.3 ease;
+    transition: all 0.3s ease;
 }
 
 body.dark {
@@ -25,18 +18,54 @@ body.dark {
     color: #e5e5e5;
 }
 
+.loading { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(124, 208, 211, 0.9);
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255, 255 , 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+
 .theme-toggle { 
     position: fixed;
     top: 24px;
     right: 24px;
-    background-color: rgba(124, 208, 211, 0.1);
-    color: inherit;
-    border: 1px solid rgba(124,208,211,0.3);
+    background-color: rgb(124, 208, 211);
+    color: black;
+    border: 1px solid black;
     border-radius: 8px;
     padding: 10px 14px;
     cursor: pointer;
     font-size: 14px;
-    backdrop-filter: blur(10px);
+    font-weight: bold;
     transition: all 0.3 ease;
     z-index: 1000;
 }
@@ -55,14 +84,14 @@ body.dark .theme-toggle {
     position: fixed;
     top: 78px;
     right: 24px;
-    background-color: rgba(124, 208,211,0.1);
-    border: 1px solid rgba(124, 208,211,0.3);
+    background-color: rgb(124, 208, 211);
+    border: 1px solid black;
     color: inherit;
     padding: 10px 14px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    backdrop-filter: blur(10px);
+    font-weight: bold;
     transition: all 0.3 ease;
     z-index: 1000;
 }
@@ -100,30 +129,7 @@ body.dark .land-section {
     z-index: 2;
 }
 
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360px);
-    }
-}
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) translateX(0px);
-        opacity: 0.3;
-    }
-    33% {
-        transform: translateY(-20px) translateX(10px);
-        opacity: 0.8;
-    }
-    66% {
-        transform: translateY(10px) translateX(-5px);
-        opacity: 0.5;
-    }
-
-}
 .avatar {
 
     width: 100px;
@@ -132,13 +138,13 @@ body.dark .land-section {
     margin-bottom: 24px;
     border: 3px solid transparent;
     background: linear-gradient(white, white) padding-box,
-                linear-gradient(135deg, rgba(124, 208,211,0.5), rgba(124, 208,211,0.8)) border-box;
+                black border-box;
     transition: all 0.3 ease;
     object-fit: cover;
 }
 
 body.dark .avatar {
-    background: linear-gradient(#0a0a0a, #0a0a0a) padding-box
+    background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
                 linear-gradient(135deg, rgba(124, 208,211,0.5), rgba(124,208,211,0.8)) border-box;
 
 }
@@ -173,6 +179,7 @@ body.dark .avatar {
     cursor: pointer;
     font-weight: bold;
     text-decoration: none;
+    margin-top: 15px;
 }
 
 .nav-btn:hover {
@@ -193,12 +200,11 @@ body.dark .nav-btn:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
+    padding-top: 30px;
+
 
 }
-
-
-
 
 .titledescrip {
 
@@ -306,77 +312,93 @@ body.dark .project-item p {
     color: #aaa;
 }
 
+.section { 
+    scroll-margin-top: 100px;
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-top: 15px;
 }
 
-.contact-form input, 
-.contact-form textarea {
-    padding: 12px;
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
     border: 1px solid black;
-    border-radius:  8px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 14px;
     background-color: white;
-    color: black;
 }
 
-
-body.dark .contact-form input,
-body.dark .contact-form textarea {
+body.dark .form-group input,
+body.dark .form-group textarea {
     background-color: #1a1a1a;
-    color: #e0e0e0;
+    color: #e5e5e5;
     border-color: #252525;
 }
 
-.contact-form textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-
-.contact-form button {
+.submit-btn {
     background-color: rgb(124, 208, 211);
     color: black;
     padding: 12px 20px;
     border: 1px solid black;
-    border-radius:  8px;
-    cursor: pointer;
+    border-radius: 8px;
     font-weight: bold;
-    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
 }
-
-
-.contact-form button:hover {
+.submit-btn:hover {
     background-color: rgb(101, 171, 173);
-
 }
 
-
-body.dark .contact-form button {
+body.dark .submit-btn {
     background-color: rgb(64, 128, 131);
     color: white;
     border-color: #252525;
 }
-
-
-
-body.dark .contact-form button:hover {
+body.dark .submit-btn:hover {
     background-color: rgb(81,151, 153);
 }
 
+.feedback-item {
+    background-color: #f9f9f9;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
 
-.feedback {
-    margin-top: 15px;
+body.dark .feedback-item {
+    background-color: #1a1a1a;
+    border-color: #252525;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
     font-weight: bold;
-    text-align: center;
-}
-.section { 
-    scroll-margin-top: 80px;
 }
 
+.feedback-date {
+    color: #666
+}
+
+body.dark .feedback-date {
+    color: #aaa
+}
 @media (max-width: 500px) {
     .about-card, .card {
         width: 300px;
@@ -385,108 +407,11 @@ body.dark .contact-form button:hover {
     .nav {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+    }
+
+    .nav-btn {
+        width: 90%;
+        max-width: 280px;
     }
 }
-    </style>
-</head>
-
-
-<body>
-
-    <button class="theme-toggle" onclick="toggleTheme()">◐</button>
-    <button class="home-toggle" onclick="scrollToTop()">🏠︎</button>
-
-    <nav class="nav">
-        <button class="nav-btn" onclick="scrollToSection('about')">About Me</button>
-        <button class="nav-btn" onclick="scrollToSection('education')">Education</button>
-        <button class="nav-btn" onclick="scrollToSection('projects')">Projects</button>
-        <button class="nav-btn" onclick="scrollToSection('social')">Social Links</button>
-        <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
-
-
-    </nav>
-
-    <div class="profilecontain">
-        <div>
-            <div class="name">Zijun Ma</div>
-            <div class="titledescrip">Student</div>
-    </div>
-
-
-    <div id="about" class="about-card section">
-        <img src="https://shorturl.at/1g5LZ" class="avatar">
-        <div class="about-title">About Me</div>  
-        
-        <div>
-            Hello! :), I'm a student at SI Tech (rising Junior). 
-            <br>
-            I'm interested in Environmental Science and Engineering. I have worked with teachers at 
-            SI Tech and a professor at CSI to write research papers. 
-        </div>
-        <br>
-        <div>
-            I enjoy playing videogames with my friends and reading when I'm not coding.
-        </div>
-    </div>
-
-
-    <div id="education" class="card section">
-        <div class="card-title">Education</div>
-        <div id="education-content"></div>
-    </div>
-
-
-    <div id="projects" class="card section">
-        <div class="card-title">Projects</div>
-        <div id="projects-content"></div>
-    </div>
-
-    
-    <div id="social" class="card section">
-        <div class="card-title">Social</div>
-        <div class="links-list">
-            <a href="https://github.com/zijunma" class="social-links" target="_blank">GitHub</a>
-            <a href="mailto:zijunma2009@gmail.com" class="social-links" target="_blank">Gmail</a>
-            <a href="https://www.instagram.com/clqies_" class="social-links" target="_blank">Instagram</a>
-        </div>
-    </div>
-
-
-    <div id="contact" class="card section">
-        <div class="card-title">Contact Me</div>
-        <form id="contactForm" class="contact-form">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-            <button type="Submit">Send Message</button>
-        </form>
-    <div id="feedback" class="feedback"></div>
-</div>
-<script>
-    function scrollToSection(sectionID) {
-        const element = document.getElementById(sectionID);
-        if (element) {
-            elemt.scrollIntoView({
-                behavior: "smooth",
-                block:"start"
-            });
-        }
-    }
-
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-
-    function toggleTheme() {
-        document.body.classList.toggle('dark');
-    }
-
-
-
-    document.addEventListener('DOMContentLoaded', initializeWebsite)
-</script>
-</body>
-</html>

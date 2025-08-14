@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiler</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    
+    </style>
+</head>
+
+
+<body>
+    <div class="loading" id="loadingIndicator">
+        <div class="spinner"></div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">◐</button>
+    <button class="home-button" onclick="scrollToTop()">🏠︎</button>
+
+    <nav class="nav">
+        <button class="nav-btn" onclick="scrollToSection('about')">About Me</button>
+        <button class="nav-btn" onclick="scrollToSection('education')">Education</button>
+        <button class="nav-btn" onclick="scrollToSection('projects')">Projects</button>
+        <button class="nav-btn" onclick="scrollToSection('contact')">Contact Me</button>
+        <button class="nav-btn" onclick="scrollToSection('social')">Social Links</button>
+
+
+    </nav>
+
+    <div class="profilecontain">
+        <div>
+            <div class="name">Zijun Ma</div>
+            <div class="titledescrip">Student</div>
+    </div>
+
+
+    <div id="about" class="about-card section">
+        <img src="https://shorturl.at/1g5LZ" class="avatar">
+        <div class="about-title">About Me</div>  
+        
+        <div>
+            Hello! :), I'm a student at SI Tech (rising Junior). 
+            <br>
+            I'm interested in Env. Sci and Engineering. I have worked with teachers at 
+            SI Tech and a professor at CSI to write research papers. 
+        </div>
+        <br>
+        <div>
+            I like playing video games and reading. 
+        </div>
+    </div>
+
+
+    <div id="education" class="card section">
+        <div class="card-title">Education</div>
+        <div id="education-content"></div>
+    </div>
+
+
+    <div id="projects" class="card section">
+        <div class="card-title">Projects</div>
+        <div id="projects-content"></div>
+    </div>
+
+    <div id="contact" class="card section">
+        <div class="card-title">Contact Me</div>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <div style="margin-top: 30px;">
+            <h3>Feedback</h3>
+            <div id="feedback-list"></div>
+            <button class="submit-btn" onclick="toggleFeedbackForm()" style="margin-top: 15px;">Add Feedback</button>
+            
+            <form class="contact-form" id="feedbackForm" style="display: none;">
+                <div class="form-group">
+                    <label for="feedback-name">Your Name</label>
+                    <input type="text" id="feedback-name" name="feedback-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Your Feedback</label>
+                    <textarea id="feedback-message" name="feedback-message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+                <button type="button" class="submit-btn" onclick="toggleFeedbackForm()" style="margin-left: 10px;">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="social" class="card section">
+        <div class="card-title">Social</div>
+        <div class="links-list">
+            <a href="https://github.com/zijunma" class="social-links" target="_blank">GitHub</a>
+            <a href="mailto:zijunma2009@gmail.com" class="social-links" target="_blank">Gmail</a>
+            <a href="https://www.instagram.com/clqies_" class="social-links" target="_blank">Instagram</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const education = [
+            {
+                school: "Staten Island Technical Highschool",
+                year: "2023-2027",
+                grade: "Rising Junior",
+                coreClasses: "APES, AP World History, Algebra II, Physics, SERP",
+                favoriteClass: "SERP",
+                details: "I'd like to focus on environmental research"
+            }
+        ];
+
+    const projects = [
+            {
+                name: "Portfolio Website",
+                description: "Made a personal website using HTML, CSS, and Javascript.",
+                dateComplete: "2025",
+                
+            }
+    
+        ];
+        let feedbackList = [];
+
+    function educationpop() {
+        const container = document.getElementById('education-content');
+        education.forEach(edu => {
+            const div = document.createElement('div');
+            div.className = 'education-item';
+            div.innerHTML = `
+                <h3>${edu.school}</h3>
+                <p><strong>Year:</strong> ${edu.year}</p>
+                <p><strong>Grade:</strong> ${edu.grade}</p>
+                <p><strong>Core Classes:</strong> ${edu.coreClasses}</p>
+                <p><strong>Favorite Class:</strong> ${edu.favoriteClass}</p>
+                <p><strong>Details:</strong> ${edu.details}</p>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function projectspop() {
+        const container = document.getElementById(`projects-content`);
+        projects.forEach(project => {
+            const div = document.createElement('div');
+            div.className = 'project-item'
+            div.innerHTML = `
+                <h3>${project.name}</h3>
+                <p><strong>Description:</strong> ${project.description}</p>
+                <p><strong>Completed:</strong> ${project.dateComplete}</p>
+            `;
+            container.appendChild(div)
+        })
+    }
+    
+    function scrollToSection(sectionID) {
+        const element = document.getElementById(sectionID);
+        if (element) {
+            element.scrollIntoView({
+                behavior: "smooth",
+                block:"start"
+            });
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+    }
+
+    function toggleFeedbackForm() {
+        const form = document.getElementById('feedbackForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function handleContactSubmit(event) {
+        event.preventDefault();
+        alert('thanks for your message :)')
+        event.target.reset();
+    }
+
+    function handleFeedbackSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        const newFeedback = {
+            name: formData.get('feedback-name'),
+            message: formData.get('feedback-message'),
+            date: new Date().toLocaleDateString()
+        };
+
+        feedbackList.push(newFeedback);
+
+        const feedbackContainer = document.getElementById('feedback-list');
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.className = 'feedback-item';
+        feedbackDiv.innerHTML = ` 
+            <div class="feedback-header">
+                <span>${newFeedback.name}</span>
+                <span class="feedback-date">${newFeedback.date}</span>
+            </div>
+            <p>${newFeedback.message}</p>
+        `;
+        feedbackContainer.appendChild(feedbackDiv);
+
+        event.target.reset();
+        toggleFeedbackForm();
+        alert('thanks for your feedback');
+    }
+
+    function initializeWebsite() {
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        setTimeout(() => {
+            loadingIndicator.classList.add('hidden');
+        }, 500);
+
+        educationpop();
+        projectspop();
+
+        document.getElementById('contactForm').addEventListener('submit', handleContactSubmit);
+        document.getElementById('feedbackForm').addEventListener('submit', handleFeedbackSubmit);
+        
+
+        console.log("website intialized");
+    }
+    document.addEventListener('DOMContentLoaded', initializeWebsite)
+</script>
+</body>
+</html>
